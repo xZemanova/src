@@ -1,0 +1,199 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.ActiveMenu = PageNames.Home; //The menu item will be active for this page.
+}
+@section styles {
+    <link href="~/lib/morris.js/morris.css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render("~/Bundles/home-index")
+}
+<div class="block-header">
+    <h2>DASHBOARD</h2>
+</div>
+<div class="row clearfix">
+    <!-- Latest Reviews -->
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+            <div class="header">
+                <h2>Reviews</h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-hover dashboard-task-infos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Restaurant</th>
+                                <th>Taste</th>
+                                <th>Texture</th>
+                                <th>Presentation</th>
+                                <th>Picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Restaurant 1</td>
+                                <td>5*</td>
+                                <td>3*</td>
+                                <td>4*</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Restaurant 2</td>
+                                <td>5*</td>
+                                <td>5*</td>
+                                <td>5*</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Restaurant 2</td>
+                                <td>5*</td>
+                                <td>4*</td>
+                                <td>5*</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Restaurant 3</td>
+                                <td>4*</td>
+                                <td>3*</td>
+                                <td>4*</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Restaurant 1</td>
+                                <td>3*</td>
+                                <td>2*</td>
+                                <td>1*</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#ReviewCreateModal">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <!-- #END# Task Info -->
+    <div>
+        <form name="testForm" role="form" novalidate class="form-validation">
+            Name<input type="text" id="txtName" name="txtName" />
+            Extention<input type="text" id="txtExt" name="txtExt" />
+            <button type="submit" id="btnSave" class="btn btn-primary">@L("Save")</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="ReviewCreateModal" tabindex="-1" role="dialog" aria-labelledby="ReviewCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="reviewCreateForm" role="form" novalidate class="form-validation">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span>@L("CreateNewReview")</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select id ="RestaurantName" class="selectpicker" data-live-search="true">
+                                <option data-tokens="R1">Restaurant 1</option>
+                                <option data-tokens="R2">Restaurant 2</option>
+                                <option data-tokens="R3">Restaurant 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <label class="form-label">Taste: </label>
+                        <div class="form-line">
+                            <div id="taste" class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="taste" id="taste1" autocomplete="off"> 1
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="taste" id="taste2" autocomplete="off"> 2
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="taste" id="taste3" autocomplete="off"> 3
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="taste" id="taste4" autocomplete="off"> 4
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="taste" id="taste5" autocomplete="off"> 5
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <label class="form-label">Texture: </label>
+                        <div class="form-line">
+                            <div id="texture" class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="texture" id="texture1" autocomplete="off"> 1
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="texture" id="texture2" autocomplete="off"> 2
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="texture" id="texture3" autocomplete="off"> 3
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="texture" id="texture4" autocomplete="off"> 4
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="texture" id="texture5" autocomplete="off"> 5
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <label class="form-label">Presentation: </label>
+                        <div class="form-line">
+                            <div id="presentation" class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="presentation" id="presentation1" autocomplete="off"> 1
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="presentation" id="presentation2" autocomplete="off"> 2
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="presentation" id="presentation3" autocomplete="off"> 3
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="presentation" id="presentation4" autocomplete="off"> 4
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="presentation" id="presentation5" autocomplete="off"> 5
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <label class="form-label">Burger Picture: </label>
+                        <form class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary btn-sm float-left">
+                                    <input type="file">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                    <button id="btnSaveReview" type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
