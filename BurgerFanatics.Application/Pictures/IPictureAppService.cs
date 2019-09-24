@@ -11,7 +11,7 @@ namespace BurgerFanatics.Pictures
     public interface IPictureAppService : IApplicationService
     {
         IEnumerable<GetPicture> ListAll();
-        Task Create(CreatePicture input);
+        Task Create(PictureCreate input);
         void Update(UpdatePicture input);
         void Delete(DeletePicture input);
         GetPicture GetPictureById(GetPictureId input);

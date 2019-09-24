@@ -29,7 +29,7 @@ namespace BurgerFanatics.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> AddPicture(string fileName, string fileContentType)
         {
-            CreatePicture _picture = new CreatePicture { FileName = fileName, FileContentType = fileContentType };
+            PictureCreate _picture = new PictureCreate { FileName = fileName, FileContentType = fileContentType };
             await _pictureAppService.Create(_picture);
             return View();
         }

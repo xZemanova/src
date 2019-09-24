@@ -18,10 +18,11 @@ namespace BurgerFanatics.Pictures
             _pictureManager = pictureManager;
         }
 
-        public async Task Create(CreatePicture input)
+        public async Task Create(PictureCreate input)
         {
-            Picture output = Mapper.Map<CreatePicture, Picture>(input);
+            var output = ObjectMapper.Map<Picture>(input);
             await _pictureManager.Create(output);
+            await CurrentUnitOfWork.SaveChangesAsync();
         }
 
         public void Delete(DeletePicture input)

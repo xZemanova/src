@@ -10,6 +10,7 @@ using Abp.Modules;
 using BurgerFanatics.Authorization.Roles;
 using BurgerFanatics.Authorization.Users;
 using BurgerFanatics.Models;
+using BurgerFanatics.Pictures.Dto;
 using BurgerFanatics.Restaurants.Dto;
 using BurgerFanatics.Reviews.Dto;
 using BurgerFanatics.Roles.Dto;
@@ -22,12 +23,14 @@ namespace BurgerFanatics
     {
         public override void PreInitialize()
         {
-
+            
         }
 
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+
+            Configuration.Modules.AbpAutoMapper().UseStaticMapper = false;
 
             // TODO: Is there somewhere else to store these, with the dto classes
             Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg =>
@@ -40,11 +43,19 @@ namespace BurgerFanatics
                 #endregion
 
                 #region Reviews
-                cfg.CreateMap<CreateReview, Review>().ReverseMap();
+                cfg.CreateMap<CreateReview, Review>();
                 cfg.CreateMap<Review, GetReview>().ReverseMap();
                 cfg.CreateMap<List<Review>, List<GetReview>>().ReverseMap();
                 cfg.CreateMap<UpdateReview, Review>().ReverseMap();
                 #endregion
+
+                #region Pictures
+                cfg.CreateMap<PictureCreate, Picture>();
+                cfg.CreateMap<Picture, GetPicture>().ReverseMap();
+                cfg.CreateMap<List<Picture>, List<GetPicture>>().ReverseMap();
+                cfg.CreateMap<UpdatePicture, Picture>().ReverseMap();
+                #endregion
+
                 // Role and permission
                 cfg.CreateMap<Permission, string>().ConvertUsing(r => r.Name);
                 cfg.CreateMap<RolePermissionSetting, string>().ConvertUsing(r => r.Name);
